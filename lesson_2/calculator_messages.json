@@ -5,7 +5,8 @@
     "second_num": "What's the second number?",
     "operation": "What operation do you want to perform?\n 1) Add 2) Subtract 3) Multiply 4) Divide",
     "invalid_operation": "You must choose 1, 2, 3, or 4",
-    "another": "Do you want to perform another calculation?\n Yes/no",
+    "output": "The result is:",
+    "another": "Do you want to perform another calculation?\nEnter 'Yes or no'",
     "invalid_op": "You must choose Yes or no.",
     "end": "End of calculation!"
 }
