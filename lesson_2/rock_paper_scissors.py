@@ -1,61 +1,61 @@
+"""
+A rock, paper, scissors, lizard, spock game with best-of-five rounds.
+
+The user plays against the computer (which makes a random choice).
+The user is prompted to make a choice, and the result is displayed:
+the result of each round, the running tally.
+After a best of five rounds 'grand winner' is determined, the user is
+asked if they would like to play another 5 rounds.
+"""
+
 import random
 
 VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 # This constant allows shortened input from user.
 VALID_CHOICES_SHORTENED = [CHOICE[0] for CHOICE in VALID_CHOICES]
+WINNING_COMBOS = {
+    'rock': ['scissors', 'lizard'],
+    'paper': ['rock', 'spock'],
+    'scissors': ['paper', 'lizard'],
+    'lizard': ['paper', 'spock'],
+    'spock': ['rock', 'scissors'],
+}
 
 player_win_tally = 0
 computer_win_tally = 0
 
 def prompt(message):
+    """Gives a visual clue of program output to user."""
     print(f"===> {message}")
 
+def player_wins(player_choice, computer_choice):
+    """Returns True if player wins, False otherwise"""
+    return computer_choice in WINNING_COMBOS[player_choice]
+
 def display_winner(player, computer):
-    prompt(f"You chose {player}, computer chose {computer}")
-
-    if ((player == "rock" and computer == "scissors") or
-        (player == "rock" and computer == "lizard") or
-
-        (player == "paper" and computer == "rock") or
-        (player == "paper" and computer == "spock") or
-
-        (player == "scissors" and computer == "paper") or
-        (player == "scissors" and computer == "lizard") or
-
-        (player == "lizard" and computer == "spock") or
-        (player == "lizard" and computer == "paper") or
-
-        (player == "spock" and computer == "scissors") or
-        (player == "spock" and computer == "rock")):
+    """Prints the result of a round to terminal, and increments win tally."""
+    if player_wins(player, computer):
         prompt("You win!")
         global player_win_tally
         player_win_tally += 1
 
-    elif ((player == "rock" and computer == "paper") or
-        (player == "rock" and computer == "spock") or
+    elif player == computer:
+        prompt("It's a tie!")
 
-        (player == "paper" and computer == "scissors") or
-        (player == "paper" and computer == "lizard") or
-
-        (player == "scissors" and computer == "rock") or
-        (player == "scissors" and computer == "spock") or
-
-        (player == "lizard" and computer == "rock") or
-        (player == "lizard" and computer == "scissors") or
-
-        (player == "spock" and computer == "lizard") or
-        (player == "spock" and computer == "paper")):
+    else:
         prompt("Computer wins!")
         global computer_win_tally
         computer_win_tally += 1
 
-    else:
-        prompt("It's a tie!")
-
 keep_going = True
+
+prompt("Welcome to the game! You will be playing against the computer in a"
+" best-of-5-rounds match.\nPlease note you can enter just the first letter"
+" of any valid choice.\n\nGood luck!\n\n")
 
 while keep_going:
 
+    # Resets tallies and round counter for each Best of Five loop
     player_win_tally = 0
     computer_win_tally = 0
     round_counter = 1
@@ -124,4 +124,5 @@ while keep_going:
         answer = input().lower()
 
     if answer[0] == 'n':
+        prompt("Thank you for playing the game. See you next time!")
         keep_going = False
