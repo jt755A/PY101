@@ -6,7 +6,6 @@ VALID_CHOICES_SHORTENED = [CHOICE[0] for CHOICE in VALID_CHOICES]
 
 player_win_tally = 0
 computer_win_tally = 0
-grand_winner = ''
 
 def prompt(message):
     print(f"===> {message}")
@@ -57,10 +56,14 @@ keep_going = True
 
 while keep_going:
 
+    player_win_tally = 0
+    computer_win_tally = 0
+    round_counter = 1
+
     # Best of Five loop
     while player_win_tally < 3 and computer_win_tally < 3:
 
-        prompt(f'Choose one: {", ".join(VALID_CHOICES)}')
+        prompt(f'Round {round_counter}. Choose one: {", ".join(VALID_CHOICES)}')
         choice = input()
     # added constant for 1st character
         while choice.casefold() not in VALID_CHOICES and\
@@ -99,15 +102,18 @@ while keep_going:
 
         prompt(f'The score is:\n===> Player: {player_win_tally}, Computer: {computer_win_tally},')
 
+        round_counter += 1
+
         if player_win_tally == 3:
             grand_winner = 'Player'
+            prompt(f'The grand winner is {grand_winner}!')
 
         if computer_win_tally == 3:
             grand_winner = 'Computer'
-
-    prompt(f'The grand winner is {grand_winner}!')
+            prompt(f'The grand winner is {grand_winner}!')
 
     # Play another match of best-of-five
+
     prompt("Do you want to play again (y/n)?")
     answer = input().lower()
 
