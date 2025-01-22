@@ -1,14 +1,39 @@
 {
-    "welcome":  "Welcome to Calculator!",
-    "first_num": "What's the first number?",
-    "invalid_num": "Hmm... that doesn't look like a valid number.",
-    "second_num": "What's the second number?",
-    "operation": "What operation do you want to perform?\n 1) Add 2) Subtract 3) Multiply 4) Divide",
-    "invalid_operation": "You must choose 1, 2, 3, or 4",
-    "output": "The result is:",
-    "another": "Do you want to perform another calculation?\nEnter 'Yes or no'",
-    "invalid_op": "You must choose Yes or no.",
-    "end": "End of calculation!"
+    "en": {
+        "welcome":  "Welcome to calculator!",
+        "first_num": "What's the first number?",
+        "invalid_num": "Hmm... that doesn't look like a valid number.",
+        "second_num": "What's the second number?",
+        "operation": "What operation do you want to perform?\n 1) Add 2) Subtract 3) Multiply 4) Divide",
+        "invalid_operation": "You must choose 1, 2, 3, or 4",
+        "result": "The result is: {output}",
+        "another_operation": "Do you want to perform another calculation?\nEnter 'Yes or no'",
+        "invalid_op": "You must choose 'yes' or 'no'.",
+        "end": "End of calculation!"
+    },
+    "pt": {
+        "welcome":  "Bem-vindo à Calculadora!",
+        "first_num": "Qual é o primeiro número??",
+        "invalid_num": "Hmm... isso não parece um número válido.",
+        "second_num": "Qual é o segundo número?",
+        "operation": "Que operação você deseja realizar?\n 1) Somar 2) Subtrair 3) Multiplicar 4) Dividir",
+        "invalid_operation": "Você deve escolher 1, 2, 3 ou 4",
+        "result": "O resultado é: {output}",
+        "another_operation": "Deseja realizar outro cálculo?\nDigite 'Sim ou não'",
+        "invalid_op": "Você deve escolher 'sim' ou 'não'",
+        "end": "Fim do cálculo!"
+    },
+
+    "fr": {
+        "welcome":  "Bienvenue sur Calculatrice !",
+        "first_num": "Quel est le premier numéro ?",
+        "invalid_num": "Hmm... ça ne ressemble pas à un numéro valide.",
+        "second_num": "Quel est le deuxième numéro ?",
+        "operation": "Quelle opération souhaitez-vous effectuer ?\n 1) Ajouter 2) Soustraire 3) Multiplier 4) Diviser",
+        "invalid_operation": "Vous devez choisir 1, 2, 3 ou 4",
+        "result": "Le résultat est : {output}",
+        "another_operation": "Voulez-vous effectuer un autre calcul ?\nSaisissez « Oui ou non »",
+        "invalid_op": "Vous devez choisir « oui » ou « non ».",
+        "end": "Fin du calcul !"
+    }
 }
-
-
