@@ -13,67 +13,81 @@ def invalid_number(number_str):  # checks non-numeric + negative values
 
     return False
 
+while True:
 
-prompt("What is the loan amount? ($)")
-loan_amount = input().strip('$').replace(' ', '') # removing dollar sign and spaces from input
-if ',' in loan_amount:           # removing commas, if any
-    loan_amount = loan_amount.replace(',', "")
+    prompt("Welcome to the Mortgage/Loan Calculator!\n")
 
-while invalid_number(loan_amount):
-    prompt("That looks like an invalid number")
+    prompt("What is the loan amount? ($)")
+
+    # removing dollar sign, spaces, and commas from input, if any
     loan_amount = input().strip('$').replace(' ', '').replace(',', '')
+    if ',' in loan_amount:
+        loan_amount = loan_amount.replace(',', "")
 
+    while invalid_number(loan_amount):
+        prompt("That looks like an invalid number. Enter a positive number!")
+        loan_amount = input().strip('$').replace(' ', '').replace(',', '')
 
-prompt("What is the Annual interest rate? (Please enter the %)")
-apr = input()
+    loan_amount = float(loan_amount)
 
-while invalid_number(apr.strip('%')):
-    prompt("That looks like an invalid number")
+    prompt("What is the Annual interest rate? (Please enter the %)")
     apr = input()
 
-apr = apr.strip('%') # removing % symbol
-apr = float(apr) / 100 # final figure
+    while invalid_number(apr.strip('%')):
+        prompt("That looks like an invalid number. Enter a positive number!")
+        apr = input()
 
-monthly_interest_rate = apr / 12
+    apr = apr.strip('%') # removing % symbol
+    apr = float(apr) / 100 # final figure
+    monthly_interest_rate = apr / 12
 
-prompt("What is the loan duration? (In years or months)")
-loan_length = input()
-
-while invalid_number(loan_length):
-    prompt("That looks like an invalid number")
-    loan_length = input()
-
-prompt("Is the loan duration in:\n1) Years 2) Months?")
-time_unit = input()
-
-while time_unit not in ['1', '2']:
-    prompt("You must choose 1 or 2")
+    prompt("Is the loan duration specified in:\n1) Years 2) Months?")
     time_unit = input()
 
+    while time_unit not in ['1', '2']:
+        prompt("You must choose '1' (years) or '2' (months)")
+        time_unit = input()
 
-# if time_unit == '1':
-#     loan_months = float(loan_length) * 12
+    match time_unit:
+        case '1':
+            unit = 'years'
+        case '2':
+            unit = 'months'
 
-# elif time_unit == '2':
-#     loan_months = float(loan_length)
+    prompt(f"How many {unit}?")
+    loan_length = input()
 
-match time_unit:
-    case '1':
-        loan_months = float(loan_length) * 12
-    case '2':
-        loan_months = float(loan_length)
+    while invalid_number(loan_length):
+        prompt("That looks like an invalid number.")
+        loan_length = input()
 
+    match time_unit:
+        case '1':
+            loan_months = float(loan_length) * 12
+        case '2':
+            loan_months = float(loan_length)
 
+    if apr == 0:
+        monthly_payment = loan_amount / loan_months
+    else:
+        monthly_payment = (loan_amount * (monthly_interest_rate
+                            / (1 - (1 + monthly_interest_rate)
+                               ** (-loan_months)))
+                            )
+    rounded_payment = round(monthly_payment, 2)
 
-if apr == 0:
-    monthly_payment = float(loan_amount) / loan_months
-else:
-    monthly_payment = (
-        float(loan_amount)
-                       * (monthly_interest_rate
-                          / (1 - (1 + monthly_interest_rate) ** (-loan_months))
-                          )
-                          )
-rounded_payment = round(monthly_payment, 2)
+    prompt(f'Your monthly payment is ${rounded_payment}')
 
-prompt(f'Your monthly payment is ${rounded_payment}')
+    prompt("Would you like to make another calculation?")
+    another_answer = input().casefold()
+
+    while True:
+        if another_answer.startswith('y') or another_answer.startswith('n'):
+            break
+
+        prompt('Please enter "y" or "n"')
+        another_answer = input().casefold()
+
+    if another_answer[0] == 'n':
+        prompt("Thank you for using the Mortgage/Loan calculator!")
+        break
