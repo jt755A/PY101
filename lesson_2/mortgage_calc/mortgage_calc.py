@@ -13,6 +13,16 @@ def invalid_number(number_str):  # checks non-numeric + negative values
 
     return False
 
+def invalid_length(number_str):  # checks non-numeric, 0, and negative values
+    try:
+        float(number_str)
+    except ValueError:
+        return True
+    if float(number_str) <= 0:
+        return True
+
+    return False
+
 while True:
 
     prompt("Welcome to the Mortgage/Loan Calculator!\n")
@@ -21,8 +31,6 @@ while True:
 
     # removing dollar sign, spaces, and commas from input, if any
     loan_amount = input().strip('$').replace(' ', '').replace(',', '')
-    if ',' in loan_amount:
-        loan_amount = loan_amount.replace(',', "")
 
     while invalid_number(loan_amount):
         prompt("That looks like an invalid number. Enter a positive number!")
@@ -57,8 +65,8 @@ while True:
     prompt(f"How many {unit}?")
     loan_length = input()
 
-    while invalid_number(loan_length):
-        prompt("That looks like an invalid number.")
+    while invalid_length(loan_length):
+        prompt("That looks like an invalid number. Enter a positive number!")
         loan_length = input()
 
     match time_unit:
