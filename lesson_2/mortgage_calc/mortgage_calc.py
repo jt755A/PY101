@@ -1,4 +1,5 @@
 # Mortage Calculator
+import os
 
 def prompt(message):
     print(f'--> {message}')
@@ -25,6 +26,7 @@ def invalid_length(number_str):  # checks non-numeric, 0, and negative values
 
 while True:
 
+    os.system('clear')
     prompt("Welcome to the Mortgage/Loan Calculator!\n")
 
     prompt("What is the loan amount? ($)")
